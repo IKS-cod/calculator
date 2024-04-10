@@ -23,30 +23,34 @@ public class CalculatorController {
 
     @GetMapping(path = "/plus")
     public String calculatorPlus(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-
-        return calculatorService.calculatorPlus(num1, num2);
+        int sum = calculatorService.calculatorPlus(num1, num2);
+        return num1 + " + " + num2 + " = " + sum;
     }
 
     @GetMapping(path = "/minus")
     public String calculatorMinus(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-        return calculatorService.calculatorMinus(num1, num2);
+        int min = calculatorService.calculatorMinus(num1, num2);
+        return num1 + " - " + num2 + " = " + min;
     }
 
     @GetMapping(path = "/multiply")
     public String calculatorMultiply(@RequestParam("num1") int num1, @RequestParam("num2") int num2) {
-        return calculatorService.calculatorMultiply(num1, num2);
+        int multiply = calculatorService.calculatorMultiply(num1, num2);
+        return num1 + " * " + num2 + " = " + multiply;
     }
 
     @GetMapping(path = "/divide")
     public String calculatorDivide(@RequestParam(required = false) Integer num1,
                                    @RequestParam(required = false) Integer num2) {
         String answer;
+        int divide;
         if (num1 == null || num2 == null) {
-            answer = "Параметр(ы) на заданы";
+            answer = "Параметр(ы) не задан(ы)";
         } else if (num2 == 0) {
             answer = "Не правильно задан параметр, на '0' делить нельзя";
         } else {
-            answer = calculatorService.calculatorDivide(num1, num2);
+            divide = calculatorService.calculatorDivide(num1, num2);
+            answer = num1 + " / " + num2 + " = " + divide;
         }
         return answer;
     }
